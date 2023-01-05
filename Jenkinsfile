@@ -1,5 +1,8 @@
 pipeline {
-    agent any 
+    agent any
+    environment{
+        PATH="/opt/apache-maven-3.6.3/bin:$PATH"
+    }
     stages {
         stage('Compile and Clean') { 
             steps {
@@ -28,7 +31,7 @@ pipeline {
 
         stage('Build Docker image'){
             steps {
-                sh 'docker build -t anvbhaskar/docker_jenkins_pipeline:${BUILD_NUMBER} .'
+                sh 'docker build -t gsvsinghverma/docker_maven:${BUILD_NUMBER} .'
             }
         }
 
